@@ -29,10 +29,13 @@ export const EditButton = ({ id }: { id: string }) => {
 
 export const DeleteButton = ({ id }: { id: string }) => {
   const deleteImageWithId = deleteImage.bind(null, id);
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    deleteImageWithId();
+  };
+
   return (
-    <form
-      action={deleteImageWithId}
-      className="py-3 text-sm bg-gray-50 rounded-br-md w-full hover:bg-gray-100 text-center">
+    <form onSubmit={handleSubmit} className="py-3 text-sm bg-gray-50 rounded-br-md w-full hover:bg-gray-100 text-center">
       <DeleteBtn />
     </form>
   );
